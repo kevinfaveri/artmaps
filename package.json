@@ -1,0 +1,13 @@
+{
+  "name": "art-maps",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start-bitmaps-example": "pnpx serve ./src/bitmaps",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["bitmap", "solmaps", "artmaps", "genart", "generative art", "bitcoin", "solana"],
+  "author": "Kevin Faveri <kevin@faveri.dev>",
+  "license": "MIT"
+}

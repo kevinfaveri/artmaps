@@ -1,0 +1,107 @@
+<!-- 
+  @fileoverview This code showcases a valid HTML inscription using the BitMapsRandomizerV1 class to generate a unique seed for the https://github.com/kgolid/p5ycho/blob/master/voronoi/sketch.js p5.js sketch.
+  This sketch is a modified version of the original sketch by @kgolid, which can be found at: https://twitter.com/kGolid
+  @license MIT
+  TODO: Need to add support for building this from local (with ordinals prefix and without for prod)
+  TODO: Need to add support for testing this correctly
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="../lib/index.js"></script>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    canvas {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+
+<body>
+  <script type="module">
+    const inscriptionId = getParamValue('inscriptionId');
+    const isDev = getParamValue('isDev') === 'true';
+    new BitMapsRandomizerV1(inscriptionId).init().then((uniqueBitmapSeed) => {
+      // After this step, you can can load your gen art library of preference
+      import('http://ordinals.com/content/f815bd5c566c6e46de5cdb6ccb3a7043c63deeba61f4234baea84b602b0d4440i0').then(async (fflate) => {
+        window.p5LoadedPromise = new Promise(async (resolve, reject) => {
+          try {
+            const res = await fetch('http://ordinals.com/content/255ce0c5a0d8aca39510da72e604ef8837519028827ba7b7f723b7489f3ec3a4i0');
+            const base64Data = await res.text();
+            const compressed = Uint8Array.from(atob(base64Data), c => c.charCodeAt(0));
+
+            const inflated = fflate.gunzipSync(compressed);
+            const p5 = new TextDecoder().decode(inflated);
+            eval(p5);
+
+            resolve(p5);  // Resolve the promise
+          } catch (err) {
+            console.error(err);
+            reject(err);  // Reject the promise
+          }
+        });
+
+        window.p5LoadedPromise.then(() => {
+          // Add p5.js sketch here
+          const W = window;
+          let n = 400;
+          let points;
+          let hue_offset;
+          let tick;
+
+          W.setup = function () {
+            randomSeed(uniqueBitmapSeed);
+            let c = createCanvas(700, 700);
+            c.style("border-radius:50%");
+            colorMode(HSB);
+            noStroke();
+            init();
+          }
+
+          W.draw = function () {
+            points.forEach(function (pnt) {
+              if (tick < pnt.dim) {
+                fill((hue_offset + pnt.hue) % 360, 75, 90);
+                ellipse(pnt.pos.x, pnt.pos.y, pnt.dim - tick);
+              }
+            }, this);
+            tick++;
+          }
+
+          function init() {
+            points = [];
+            tick = 0;
+            hue_offset = random(360);
+
+            let centre = createVector(width / 2, height / 2);
+            for (var i = 0; i < n; i++) {
+              let pos = createVector(randomGaussian(width / 2, width / 4), randomGaussian(height / 2, height / 4));
+              let centre_dist = p5.Vector.dist(centre, pos);
+              points.push({
+                pos: pos,
+                hue: random(130) + centre_dist / 8,
+                dim: 50 + centre_dist / 1.8
+              });
+            }
+          }
+        }).catch((err) => {
+          console.error('Failed to load p5.js:', err);
+        });
+      });
+    }).catch((err) => {
+      console.error('Failed to load uniqueBitmapSeed:', err);
+    });
+  </script>
+</body>
+
+</html>
