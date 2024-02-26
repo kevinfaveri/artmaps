@@ -5,21 +5,23 @@ ArtMaps is a cross chain protocol that allow users to add randomization of gener
 ## How it works
 
 ### Bitmaps Example
-You can then run `pnpm run start-bitmaps-dev` to run the example by accessing: `http://localhost:3000?inscriptionId=99f82134905148553d22d67d356782082a33fdfdc65a82457234b3818ef6a102i0&dev=true&debug=true` or `http://localhost:3000/test/test` for the testing sandbox.
+This repository features the first ever ArtMap as the testing/development example: `The Telescope`
+![Screenshot 2024-02-26 at 01 26 58](https://github.com/kevinfaveri/artmaps/assets/18222497/6622dd04-8f60-4741-a30a-5bec78cca73a)
+
+You can run `pnpm run start-bitmaps-dev` to run the example by accessing: `http://localhost:3000?inscriptionId=99f82134905148553d22d67d356782082a33fdfdc65a82457234b3818ef6a102i0&dev=true&debug=true` or `http://localhost:3000/test/test` for the testing sandbox.
 
 As it can be seen, there are three params:
 - `inscriptionId`: The *Map* inscription id number you want to generate the art from (if not specified, for the example, it will randomize between 5 different *Map* ids)
 - `dev`: If you want to run the example in development mode, set it to true (it will use ordinals.com CDN rather than recursion). Marketplaces/Galleries shouldn't enable this.
 - `debug`: If you want to see the ArtMap information on the page, set it to true; only works. Marketplaces/Galleries can enable this if they feature a full screen mode view of the ArtMap.
 
-### Developing your own ArtMap and deploying
+### Developing your own ArtMap
 You can develop your own ArtMap by following the example in the `art-example` folder. For it to be a valid ArtMap, it needs to:
 - Use the public good BitMapsRandomizerV1.js script (through recursion on `/content/1bcc96d3dc3b274498f753ee958593b0d1007d8bb58ea57be2fe4e133291f165i0`)
 - Use of the randomization functions available in `BitMapsRandomizerV1` as seed for a generative art algorithm; so that each BitMap translates to a unique art on your algorithm
 - Be inscribed on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`
 
 ### Deploying your ArtMap
-
 - After developing your ArtMap using `pnpm run start-bitmaps-dev` as explained above, you need to run `pnpm run build-bitmaps`
 - `OPTIONAL` For authorship purposes, the artist should add a signature on the art, with the following format, invisible in the UI on an element with id `artist-signature`: `ArtMap by [Artist Name], reacheable at [TWITTER/EMAIL]` (check art-example for reference). This can be used in the future to take decisions regarding the art, like if it should be used in a gallery or not. The only one who can claim authorship is the one featured in the signature.
 - Then, the artist should inscribe the `/dist/bitmaps/index.html` file on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`. You can use any service that supports file uploads.
