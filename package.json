@@ -4,10 +4,33 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-bitmaps-example": "pnpx serve ./src/bitmaps",
+    "start-bitmaps-dev": "pnpx serve ./src/bitmaps",
+    "build-bitmaps": "webpack --config webpack.config.js",
+    "start-bitmaps-prod": "pnpm build-bitmaps && pnpx serve ./dist/bitmaps",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["bitmap", "solmaps", "artmaps", "genart", "generative art", "bitcoin", "solana"],
+  "devDependencies": {
+    "minify": "^11.0.1",
+    "mkdirp": "^3.0.1"
+  },
+  "keywords": [
+    "bitmap",
+    "solmaps",
+    "artmaps",
+    "genart",
+    "generative art",
+    "bitcoin",
+    "solana"
+  ],
   "author": "Kevin Faveri <kevin@faveri.dev>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "html-webpack-plugin": "^5.6.0",
+    "style-loader": "^3.3.4",
+    "terser-webpack-plugin": "^5.3.10",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  }
 }

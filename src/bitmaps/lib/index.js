@@ -6,29 +6,34 @@
  * @author Kevin Faveri <kevin@faveri.dev>
  */
 
-
-function getParamValue(paramName) {
-  var url = window.location.search.substring(1); //get rid of "?" in querystring
-  var qArray = url.split('&'); //get key-value pairs
-  for (var i = 0; i < qArray.length; i++) {
-    var pArr = qArray[i].split('='); //split key and value
-    if (pArr[0] == paramName)
-      return pArr[1]; //return value
-  }
-}
-
 class BitMapsRandomizerV1 {
   static MIN = -2147483648; // Int32 min
   static MAX = 2147483647; // Int32 max
 
-  constructor(inscriptionId) {
-    this._inscription_id = inscriptionId;
+  constructor() {
+    this._inscription_id = undefined;
     this._seed = undefined;
     this._value = undefined;
+    this._bitmap_text = undefined;
+  }
+
+  getParamValue(paramName) {
+    var url = window.location.search.substring(1); //get rid of "?" in querystring
+    var qArray = url.split('&'); //get key-value pairs
+    for (var i = 0; i < qArray.length; i++) {
+      var pArr = qArray[i].split('='); //split key and value
+      if (pArr[0] == paramName)
+        return pArr[1]; //return value
+    }
+  }
+
+  isDev() {
+    return this.getParamValue('dev') === 'true';
   }
 
   async init() {
-    const isDev = getParamValue('dev') === 'true';
+    const isDev = this.isDev();
+    this._inscription_id = this.getParamValue('inscriptionId');
     this.validateInscriptiptionIdFormat(this._inscription_id);
     const url = isDev ? `https://ordinals.com/content/${this._inscription_id}` : `/content/${this._inscription_id}`;
 
@@ -37,9 +42,9 @@ class BitMapsRandomizerV1 {
       if (!response.ok) throw new Error('Failed to fetch data');
       const text = await response.text();
       this.validateBTCFormat(text);
-      this._seed = this.hashCode(text);
+      this._bitmap_text = text;
+      this._seed = this.hashCode(this._inscription_id);
       this.reset();
-      return this._seed;
     } catch (error) {
       console.error(error);
       throw error;
@@ -80,6 +85,15 @@ class BitMapsRandomizerV1 {
 
   nextChar(chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789") {
     return chars.substr(this.nextInt(0, chars.length - 1), 1);
+  }
+
+  nextNumeric(length = 16) {
+    let randomIntegers = [];
+    for (let i = 0; i < length; i++) {
+      let randomNumber = this.nextInt(0, 9);
+      randomIntegers.push(randomNumber);
+    }
+    return Number(randomIntegers.join(''));
   }
 
   nextArrayItem(array) {
@@ -135,4 +149,4 @@ class BitMapsRandomizerV1 {
   }
 }
 
-
+window.BitMapsRandomizerV1 = BitMapsRandomizerV1;
