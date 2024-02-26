@@ -5,8 +5,12 @@ ArtMaps is a cross chain protocol that allow users to add randomization of gener
 ## How it works
 
 ### Bitmaps Example
+
 This repository features the first ever ArtMap as the testing/development example: `The Telescope`
 ![Screenshot 2024-02-26 at 01 26 58](https://github.com/kevinfaveri/artmaps/assets/18222497/6622dd04-8f60-4741-a30a-5bec78cca73a)
+The ArtMap is a generative art piece that was developed using the public good BitMapsRandomizerV1.js script, and it is inscribed on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`.
+It can be accessed here: https://ordinals.com/content/7334286282723dbbdc0850950dd5810bec516e13e040ed3ef2da12b65d28c1d7i0?debug=true&inscriptionId=cbe880035ae036f5a307462bcdc5b3e21ba4b326e1912c4b9b0ab5509dfa869di0
+And the `inscriptionId` can be changed to any other valid *Map* number to render a new art piece equivalent to the BitMap. Note: only BitMap inscriptions will render a unique art. This is ArtMaps, after all.
 
 You can run `pnpm run start-bitmaps-dev` to run the example by accessing: `http://localhost:3000?inscriptionId=99f82134905148553d22d67d356782082a33fdfdc65a82457234b3818ef6a102i0&dev=true&debug=true` or `http://localhost:3000/test/test` for the testing sandbox.
 
