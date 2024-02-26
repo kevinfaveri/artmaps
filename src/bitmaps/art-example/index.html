@@ -1,7 +1,7 @@
 <!-- 
   @fileoverview This code showcases a valid HTML inscription using the BitMapsRandomizerV1 class to generate a unique seed for the https://github.com/kgolid/p5ycho/blob/master/voronoi/sketch.js p5.js sketch.
-  This sketch is a modified version of the original sketch by @kgolid, which can be found at: https://twitter.com/kGolid
   @license MIT
+  @author Kevcode <kevin@faveri.dev>
 -->
 <!DOCTYPE html>
 <html>
@@ -59,6 +59,7 @@
             ][Math.floor(Math.random() * (5 - 0 + 1) + 0)]);
             window.location.search = params.toString()
           }
+          // Load the BitMapsRandomizerV1 class from the ordinals.com server
           await import(`${ordinalsComPrefix}/content/1bcc96d3dc3b274498f753ee958593b0d1007d8bb58ea57be2fe4e133291f165i0`);
           const bitmapRandomizer = new BitMapsRandomizerV1();
           const inscriptionId2 = params.get('inscriptionId');
@@ -187,6 +188,7 @@
   </script>
   <h3 id="artmaps-details" style="display: none; margin-left: 10px; position: absolute; top: 10px;" />
   <h2 id="bitmap-title" style="display: none; margin-left: 10px; position: absolute; bottom: 10px;" />
+  <h1 id="artist-signature" style="display: none;">ArtMap by Kevcode, reachable on https://twitter.com/kevcode_art</h1>
 </body>
 
 </html>
