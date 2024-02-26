@@ -49,3 +49,6 @@ If you like the project and want to support it, you can donate to the following 
 - BTC Ordinals: bc1prz6z3582r9u46j60ran97y602y5hdg2vtsxl2w6v72dr5secn9xq9ahus6
 - SOL: Ggm8Pmwx2HSv3LMTT7mGSSGKU14d4WnTnnXozmx9m46a
 
+### Credits
+- Public goods: OCM Dimensions for p5.js gzipped, used in the ArtMaps protocol bitmaps example under `art-example`: https://github.com/metagood/OCM-Dimensions
+- kGolid, for the repository https://github.com/kgolid/p5ycho from which inspiration was taken to develop the Bitmaps `art-example`: "The Telescope"
