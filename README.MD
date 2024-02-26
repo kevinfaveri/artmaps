@@ -14,15 +14,15 @@ As it can be seen, there are three params:
 
 ### Developing your own ArtMap and deploying
 You can develop your own ArtMap by following the example in the `art-example` folder. For it to be a valid ArtMap, it needs to:
-1 - Use the public good BitMapsRandomizerV1.js script (through recursion on `/content/1bcc96d3dc3b274498f753ee958593b0d1007d8bb58ea57be2fe4e133291f165i0`)
-2 - Use of the randomization functions available in `BitMapsRandomizerV1` as seed for a generative art algorithm; so that each BitMap translates to a unique art on your algorithm
-3 - Be inscribed on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`
+- Use the public good BitMapsRandomizerV1.js script (through recursion on `/content/1bcc96d3dc3b274498f753ee958593b0d1007d8bb58ea57be2fe4e133291f165i0`)
+- Use of the randomization functions available in `BitMapsRandomizerV1` as seed for a generative art algorithm; so that each BitMap translates to a unique art on your algorithm
+- Be inscribed on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`
 
 ### Deploying your ArtMap
 
-1 - After developing your ArtMap using `pnpm run start-bitmaps-dev` as explained above, you need to run `pnpm run build-bitmaps`
-2 - `OPTIONAL` For authorship purposes, the artist should add a signature on the art, with the following format, invisible in the UI on an element with id `artist-signature`: `ArtMap by [Artist Name], reacheable at [TWITTER/EMAIL]` (check art-example for reference). This can be used in the future to take decisions regarding the art, like if it should be used in a gallery or not. The only one who can claim authorship is the one featured in the signature.
-2 - Then, the artist should inscribe the `/dist/bitmaps/index.html` file on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`. You can use any service that supports file uploads.
+- After developing your ArtMap using `pnpm run start-bitmaps-dev` as explained above, you need to run `pnpm run build-bitmaps`
+- `OPTIONAL` For authorship purposes, the artist should add a signature on the art, with the following format, invisible in the UI on an element with id `artist-signature`: `ArtMap by [Artist Name], reacheable at [TWITTER/EMAIL]` (check art-example for reference). This can be used in the future to take decisions regarding the art, like if it should be used in a gallery or not. The only one who can claim authorship is the one featured in the signature.
+- Then, the artist should inscribe the `/dist/bitmaps/index.html` file on the Satoshi Nakamoto Wallet: `1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa`. You can use any service that supports file uploads.
 
 
 ### Integration in Marketplaces/Galleries
