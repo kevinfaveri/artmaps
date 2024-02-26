@@ -33,7 +33,7 @@ You can develop your own ArtMap by following the example in the `art-example` fo
 
 ### Integration in Marketplaces/Galleries
 The protocol is designed to be integrated into existing marketplaces and galleries, so that users can see the art generated from the *Map* they are interested in. The protocol is designed to be as simple as possible to integrate, and it is designed to be as flexible as possible, so that it can be integrated into any marketplace or gallery, regardless of the technology used.
-When passing the inscription content to an iframe, example: `/content/54d8as4dsa56d4sa564d` and then append the `&inscriptionId` param. If it is a BitMaps inscription, it will render the art derived from the Bitmap. If it is not, it will shuffle between 5 random Bitmaps that were added to the source code (this, talking about the art-example in this repository).
+When passing the inscription content to an iframe, example: `/content/54d8as4dsa56d4sa564d` and then append the `&inscriptionId` param. If it is a BitMaps inscription, it will render the art derived from the Bitmap. If it is not, it will shuffle between 5 random Bitmaps that were added to the source code (this, talking about the art-example in this repository). Websites may also provide an UI that allows users to input the *Map* number they want to generate the art from; correctly automating setting the `inscriptionId` param on the iframe URL to update the art.
 
 If the marketplace/gallery website features a full page view, it can enable the `debug` param to show the ArtMap information on the page.
 
